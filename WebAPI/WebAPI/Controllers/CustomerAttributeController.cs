@@ -39,7 +39,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpDelete("{id}")]
-        public Task<CustomerAttributeModel> delete(int id)
+        public Task<bool> delete(int id)
         {
             return _service.Delete(id);
         }
