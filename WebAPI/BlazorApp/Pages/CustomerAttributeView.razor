@@ -52,7 +52,7 @@
                         <td>@item.ShortName</td>
                         <td>@item.Parent</td>
                         <td>@item.EffectiveDate.ToString(Configuration["DateTimeFormat"])</td>
-                        <td>@item.ValidUntil.ToString(Configuration["DateTimeFormat"])</td>
+                        <td>@item.ValidUntil</td>
                         <td>
                             <a href="/details/@item.Id">Details</a>
                             <a href="/delete/@item.Id">Delete</a>
