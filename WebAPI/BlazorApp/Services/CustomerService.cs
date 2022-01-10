@@ -17,9 +17,10 @@ namespace BlazorApp.Services
             _httpClient = httpClient;
         }
 
-        public async Task<List<CustomerAttributeModel>> getAll()
+        public async Task<List<CustomerAttributeModel>> getAll(CustomerSearch customerSearch)
         {
-            var result = await _httpClient.GetFromJsonAsync<List<CustomerAttributeModel>>("/api/CustomerAttribute");
+            string url = $"/api/CustomerAttribute?AttributeMaster={customerSearch.AttributeMaster}";
+            var result = await _httpClient.GetFromJsonAsync<List<CustomerAttributeModel>>(url);
             return result;
         }
 
@@ -29,9 +30,17 @@ namespace BlazorApp.Services
             return result;
         }
 
-        public Task<CustomerAttributeModel> Create(CustomerAttributeModel newCust)
+        public async Task<bool> Create(CustomerCreate newCust)
         {
-            throw new NotImplementedException();
+            var result = await _httpClient.PostAsJsonAsync("/api/CustomerAttribute", newCust);
+            if (result.IsSuccessStatusCode)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public async Task<CustomerAttributeModel> Delete(int id)

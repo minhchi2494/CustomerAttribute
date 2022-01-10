@@ -6,6 +6,7 @@ using BlazorApp.Services;
 using BlazorApp.Models;
 
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Forms;
 
 namespace BlazorApp.Pages
 {
@@ -13,18 +14,17 @@ namespace BlazorApp.Pages
     {
         [Inject]
         private ICustomerService _services { get; set; }
-        private List<CustomerAttributeModel> model { set; get; }
+        private List<CustomerAttributeModel> model;
+        private CustomerSearch CustomerSearch = new CustomerSearch();
 
         protected override async Task OnInitializedAsync()
         {
-            model = await _services.getAll();
+            model = await _services.getAll(CustomerSearch);
         }
 
-
-        /*public async Task Edit_ClickAsync(int id)
+        private async Task SeachForm(EditContext context)
         {
-            navigation.NavigateTo("/details/" + id);
-        }*/
-
+            model = await _services.getAll(CustomerSearch);
+        }
     }
 }

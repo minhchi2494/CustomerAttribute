@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using WebAPI.Services;
 using WebAPI.Models;
-namespace CustomerAttributeBlazor.Controllers
+namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -19,10 +19,11 @@ namespace CustomerAttributeBlazor.Controllers
             _service = service;
         }
 
+        //api/CustomerAttribute?name=
         [HttpGet]
-        public Task<List<CustomerAttributeModel>> getALl()
+        public Task<List<CustomerAttributeModel>> getALl([FromQuery]CustomerSearch customerSearch)
         {
-            return _service.GetAll();
+            return _service.GetAll(customerSearch);
         }
 
         [HttpGet("{id}")]
@@ -32,9 +33,9 @@ namespace CustomerAttributeBlazor.Controllers
         }
 
         [HttpPost]
-        public Task<CustomerAttributeModel> create(CustomerAttributeModel newCust)
+        public Task<bool> create([FromBody]CustomerAttributeModel request)
         {
-            return _service.Create(newCust);
+            return _service.Create(request);
         }
 
         [HttpDelete("{id}")]
