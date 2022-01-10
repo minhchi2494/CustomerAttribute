@@ -35,7 +35,7 @@ namespace BlazorApp.Models
         [StringLength(50)]
         public string Parent { get; set; }
 
-        public DateTime EffectiveDate { get; set; }
-        public DateTime ValidUntil { get; set; }
+        public DateTime EffectiveDate { get; set; } = DateTime.Now.AddDays(1);
+        public DateTime? ValidUntil { get; set; }
     }
 }

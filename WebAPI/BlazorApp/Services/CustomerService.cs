@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using BlazorApp.Models;
 using System.Net.Http;
 using System.Net.Http.Json;
+using Newtonsoft.Json;
+using System.Net.Http.Headers;
 
 namespace BlazorApp.Services
 {
@@ -30,7 +32,7 @@ namespace BlazorApp.Services
             return result;
         }
 
-        public async Task<bool> Create(CustomerCreate newCust)
+        public async Task<bool> Create(CustomerAttributeModel newCust)
         {
             var result = await _httpClient.PostAsJsonAsync("/api/CustomerAttribute", newCust);
             if (result.IsSuccessStatusCode)

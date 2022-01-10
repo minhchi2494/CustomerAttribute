@@ -12,7 +12,7 @@ namespace BlazorApp.Services
 
         Task<CustomerAttributeModel> GetOne(int id);
 
-        Task<bool> Create(CustomerCreate newCust);
+        Task<bool> Create(CustomerAttributeModel newCust);
         Task<CustomerAttributeModel> Edit(CustomerAttributeModel editCust);
         Task<CustomerAttributeModel> Delete(int id);
     }
