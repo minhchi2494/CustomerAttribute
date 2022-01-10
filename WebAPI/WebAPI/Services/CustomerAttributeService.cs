@@ -17,9 +17,18 @@ namespace WebAPI.Services
         }
 
 
-        public async Task<List<CustomerAttributeModel>> GetAll()
+        public async Task<List<CustomerAttributeModel>> GetAll(CustomerSearch customerSearch)
         {
-            return _context.CustomerAttributeModels.ToList();
+            var result = _context.CustomerAttributeModels.ToList();
+            if (!string.IsNullOrEmpty(customerSearch.AttributeMaster))
+            {
+                result = result.Where(x=>x.AttributeMaster.ToLower().Contains(customerSearch.AttributeMaster.ToLower())).ToList();
+                return result;
+            }
+            else
+            {
+                return result;
+            }
         }
 
         public async Task<CustomerAttributeModel> GetOne(int id)
@@ -35,18 +44,18 @@ namespace WebAPI.Services
             }
         }
 
-        public async Task<CustomerAttributeModel> Create(CustomerAttributeModel newCust)
+        public async Task<bool> Create(CustomerAttributeModel newCust)
         {
             var cust = _context.CustomerAttributeModels.SingleOrDefault(x => x.Id.Equals(newCust.Id));
             if (cust == null)
             {
                 _context.CustomerAttributeModels.Add(newCust);
                 _context.SaveChanges();
-                return newCust;
+                return true;
             }
             else
             {
-                return null;
+                return false;
             }
         }
 

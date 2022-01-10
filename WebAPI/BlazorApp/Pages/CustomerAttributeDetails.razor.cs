@@ -10,9 +10,6 @@ namespace BlazorApp.Pages
 {
     public partial class CustomerAttributeDetails
     {
-
-
-
         [Inject]
         private ICustomerService services { get; set; }
 

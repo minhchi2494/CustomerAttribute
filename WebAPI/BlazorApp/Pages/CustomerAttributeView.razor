@@ -5,46 +5,67 @@
 @if(model == null)
 {
     <h4>Loading</h4>
-    <a href="/details/1">Details</a>
 }else
 {
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Attribute Master</th>
-                <th>Attribute Values Code</th>
-                <th>Description</th>
-                <th>Short Name</th>
-                <th>Parent</th>
-                <th>Effective Date</th>
-                <th>Valid Until</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach(var item in model)
-            {
+    <div class="row">
+        <EditForm Model="@CustomerSearch" OnSubmit=@SeachForm>
+            <div class="row">
+                <div class="col">
+                    <label>Attribute Master</label>
+                    <InputText class="form-control" @bind-Value="CustomerSearch.AttributeMaster"></InputText>
+                </div>
+
+                <div class="col pt-4">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </div>
+
+                <div class="col pt-4">
+                    <a href="/create" class="btn btn-success">Create</a>
+                </div>
+            </div>
+
+        </EditForm>
+    </div>
+     
+    <div class="row mt-4">
+            <table class="table">
+            <thead>
                 <tr>
-                    <td>@item.AttributeMaster</td>
-                    <td>@item.AttributeValuesCode</td>
-                    <td>@item.Description</td>
-                    <td>@item.ShortName</td>
-                    <td>@item.Parent</td>
-                    <td>@item.EffectiveDate</td>
-                    <td>@item.ValidUntil</td>
-                    <td>
-                        <a href="/details/@item.Id">Details</a>
-                        <a href="/delete/@item.Id">Delete</a>
-                    </td>
-                    @*<td>
-                        <span class="icon icon-edit" @onclick="() => Edit_ClickAsync(item.Id)">
-                                            text
-                                        </span>
-                    </td>*@
+                    <th>Attribute Master</th>
+                    <th>Attribute Values Code</th>
+                    <th>Description</th>
+                    <th>Short Name</th>
+                    <th>Parent</th>
+                    <th>Effective Date</th>
+                    <th>Valid Until</th>
+                    <th>Action</th>
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach(var item in model)
+                {
+                    <tr>
+                        <td>@item.AttributeMaster</td>
+                        <td>@item.AttributeValuesCode</td>
+                        <td>@item.Description</td>
+                        <td>@item.ShortName</td>
+                        <td>@item.Parent</td>
+                        <td>@item.EffectiveDate.ToString("dd/MM/yyyy hh:mm")</td>
+                        <td>@item.ValidUntil.ToString("dd/MM/yyyy hh:mm")</td>
+                        <td>
+                            <a href="/details/@item.Id">Details</a>
+                            <a href="/delete/@item.Id">Delete</a>
+                        </td>
+                        @*<td>
+                            <span class="icon icon-edit" @onclick="() => Edit_ClickAsync(item.Id)">
+                                                text
+                                            </span>
+                        </td>*@
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 }
 
 

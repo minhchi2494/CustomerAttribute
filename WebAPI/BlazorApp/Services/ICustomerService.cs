@@ -8,11 +8,11 @@ namespace BlazorApp.Services
 {
     public interface ICustomerService
     {
-        Task<List<CustomerAttributeModel>> getAll();
+        Task<List<CustomerAttributeModel>> getAll(CustomerSearch customerSearch);
 
         Task<CustomerAttributeModel> GetOne(int id);
 
-        Task<CustomerAttributeModel> Create(CustomerAttributeModel newCust);
+        Task<bool> Create(CustomerCreate newCust);
         Task<CustomerAttributeModel> Edit(CustomerAttributeModel editCust);
         Task<CustomerAttributeModel> Delete(int id);
     }

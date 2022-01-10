@@ -8,9 +8,9 @@ namespace WebAPI.Services
 {
     public interface ICustomerAttributeService
     {
-        Task<List<CustomerAttributeModel>> GetAll();
+        Task<List<CustomerAttributeModel>> GetAll(CustomerSearch customerSearch);
         Task<CustomerAttributeModel> GetOne(int id);
-        Task<CustomerAttributeModel> Create(CustomerAttributeModel newCust);
+        Task<bool> Create(CustomerAttributeModel newCust);
         Task<CustomerAttributeModel> Edit(CustomerAttributeModel editCust);
         Task<CustomerAttributeModel> Delete(int id);
     }
