@@ -14,6 +14,6 @@ namespace BlazorApp.Services
 
         Task<bool> Create(CustomerAttributeModel newCust);
         Task<CustomerAttributeModel> Edit(CustomerAttributeModel editCust);
-        Task<CustomerAttributeModel> Delete(int id);
+        Task<bool> Delete(int id);
     }
 }

@@ -59,12 +59,12 @@ namespace WebAPI.Services
             }
         }
 
-        public async Task<CustomerAttributeModel> Delete(int id)
+        public async Task<bool> Delete(int id)
         {
             var cust = _context.CustomerAttributeModels.SingleOrDefault(x => x.Id.Equals(id));
             _context.Remove(cust);
             _context.SaveChanges();
-            return cust;
+            return true;
         }
 
         public async Task<CustomerAttributeModel> Edit(CustomerAttributeModel editCust)

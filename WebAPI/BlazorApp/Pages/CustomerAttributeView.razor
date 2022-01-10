@@ -1,5 +1,6 @@
 ﻿@page "/customerAttribute"
 @inject IConfiguration Configuration
+@using BlazorApp.Component;
 
 <h3>CustomerAttributeView</h3>
 
@@ -54,8 +55,9 @@
                         <td>@item.EffectiveDate.ToString(Configuration["DateTimeFormat"])</td>
                         <td>@item.ValidUntil</td>
                         <td>
-                            <a href="/details/@item.Id">Details</a>
-                            <a href="/delete/@item.Id">Delete</a>
+                            <a href="/details/@item.Id" class="btn btn-primary">Details</a>
+                            <a href="/delete/@item.Id" class="btn btn-warning">Edit</a>
+                            <button class="btn btn-danger" @onclick="() => OnDeleteTask(item.Id)">Delete</button>
                         </td>
                         @*<td>
                             <span class="icon icon-edit" @onclick="() => Edit_ClickAsync(item.Id)">
@@ -67,6 +69,11 @@
             </tbody>
         </table>
     </div>
+    <Confirmation ConfirmationMessage="Are you sure to delete?"
+                  ConfirmationTitle="Delete Task"
+                  @ref="DeleteConfirmation"
+                  ConfirmationChanged="OnConfirmDeleteTask">                 
+    </Confirmation>
 }
 
 

@@ -45,10 +45,10 @@ namespace BlazorApp.Services
             }
         }
 
-        public async Task<CustomerAttributeModel> Delete(int id)
+        public async Task<bool> Delete(int id)
         {
-            var result = await _httpClient.GetFromJsonAsync<CustomerAttributeModel>($"/api/CustomerAttribute/{id}");
-            return result;
+            var result = await _httpClient.DeleteAsync($"/api/CustomerAttribute/{id}");
+            return result.IsSuccessStatusCode;
         }
 
         public Task<CustomerAttributeModel> Edit(CustomerAttributeModel editCust)
