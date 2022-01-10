@@ -1,4 +1,5 @@
 ﻿@page "/details/{id:int}"
+@inject IConfiguration Configuration
 
 <h3>CustomerAttributeDetails</h3>
 
@@ -33,12 +34,12 @@
 
     <tr>
         <td>EffectiveDate</td>
-        <td>@CustomerAttribute?.EffectiveDate.ToString("dd/MM/yyyy hh:mm")</td>
+        <td>@CustomerAttribute?.EffectiveDate.ToString(Configuration["DateTimeFormat"])</td>
     </tr>
 
     <tr>
         <td>ValidUntil</td>
-        <td>@CustomerAttribute?.ValidUntil.ToString("dd/MM/yyyy hh:mm")</td>
+        <td>@CustomerAttribute?.ValidUntil.ToString(Configuration["DateTimeFormat"])</td>
     </tr>
 
 </table>

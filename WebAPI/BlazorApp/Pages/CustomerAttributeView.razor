@@ -1,4 +1,5 @@
 ﻿@page "/customerAttribute"
+@inject IConfiguration Configuration
 
 <h3>CustomerAttributeView</h3>
 
@@ -50,8 +51,8 @@
                         <td>@item.Description</td>
                         <td>@item.ShortName</td>
                         <td>@item.Parent</td>
-                        <td>@item.EffectiveDate.ToString("dd/MM/yyyy hh:mm")</td>
-                        <td>@item.ValidUntil.ToString("dd/MM/yyyy hh:mm")</td>
+                        <td>@item.EffectiveDate.ToString(Configuration["DateTimeFormat"])</td>
+                        <td>@item.ValidUntil.ToString(Configuration["DateTimeFormat"])</td>
                         <td>
                             <a href="/details/@item.Id">Details</a>
                             <a href="/delete/@item.Id">Delete</a>
