@@ -67,7 +67,7 @@ namespace WebAPI.Services
             return true;
         }
 
-        public async Task<CustomerAttributeModel> Edit(CustomerAttributeModel editCust)
+        public async Task<bool> Edit(CustomerAttributeModel editCust)
         {
             var cust = _context.CustomerAttributeModels.SingleOrDefault(x => x.Id.Equals(editCust.Id));
             if (cust != null)
@@ -80,11 +80,11 @@ namespace WebAPI.Services
                 cust.EffectiveDate = editCust.EffectiveDate;
                 cust.ValidUntil = editCust.ValidUntil;
                 _context.SaveChanges();
-                return editCust;
+                return true;
             }
             else
             {
-                return null;
+                return false;
             }
         }
 

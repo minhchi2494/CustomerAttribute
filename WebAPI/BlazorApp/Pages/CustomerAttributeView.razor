@@ -41,6 +41,8 @@
                     <th>Effective Date</th>
                     <th>Valid Until</th>
                     <th>Action</th>
+                    <th></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -55,9 +57,9 @@
                         <td>@item.EffectiveDate.ToString(Configuration["DateTimeFormat"])</td>
                         <td>@item.ValidUntil</td>
                         <td>
-                            <a href="/details/@item.Id" class="btn btn-primary">Details</a>
-                            <a href="/delete/@item.Id" class="btn btn-warning">Edit</a>
-                            <button class="btn btn-danger" @onclick="() => OnDeleteTask(item.Id)">Delete</button>
+                            <a href="/details/@item.Id" class="btn btn-success"><i class="far fa-eye"></i></a>
+                            <a href="/edit/@item.Id" class="btn btn-warning"><i class="fas fa-edit"></i></a>
+                            <button class="btn btn-danger" @onclick="() => OnDeleteTask(item.Id)"><i class="fas fa-trash-alt"></i></button>
                         </td>
                         @*<td>
                             <span class="icon icon-edit" @onclick="() => Edit_ClickAsync(item.Id)">

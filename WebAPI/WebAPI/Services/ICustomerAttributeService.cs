@@ -11,7 +11,7 @@ namespace WebAPI.Services
         Task<List<CustomerAttributeModel>> GetAll(CustomerSearch customerSearch);
         Task<CustomerAttributeModel> GetOne(int id);
         Task<bool> Create(CustomerAttributeModel newCust);
-        Task<CustomerAttributeModel> Edit(CustomerAttributeModel editCust);
+        Task<bool> Edit(CustomerAttributeModel editCust);
         Task<bool> Delete(int id);
     }
 }
