@@ -45,16 +45,23 @@ namespace BlazorApp.Services
             }
         }
 
+        public async Task<bool> Edit(CustomerAttributeModel newCust)
+        {
+            var result = await _httpClient.PutAsJsonAsync($"/api/CustomerAttribute", newCust);
+            if (result.IsSuccessStatusCode)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public async Task<bool> Delete(int id)
         {
             var result = await _httpClient.DeleteAsync($"/api/CustomerAttribute/{id}");
             return result.IsSuccessStatusCode;
         }
-
-        public Task<CustomerAttributeModel> Edit(CustomerAttributeModel editCust)
-        {
-            throw new NotImplementedException();
-        }
-
     }
 }

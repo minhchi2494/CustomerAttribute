@@ -45,7 +45,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpPut]
-        public Task<CustomerAttributeModel> edit(CustomerAttributeModel editCust)
+        public Task<bool> edit([FromBody]CustomerAttributeModel editCust)
         {
             return _service.Edit(editCust);
         }
